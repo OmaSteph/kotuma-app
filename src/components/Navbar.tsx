@@ -2,19 +2,23 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
-        <nav className="mb-2">
+        <nav className="flex items-center p-4 gap-4">
             <div className="logo">
                 <Link to="/">Kotuma</Link>
             </div>
-            <ul className="nav-links">
+            <ul className="list-none flex gap-4 items-center">
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/services">Services</Link></li>
-                <li><Link to="/experts">Experts</Link></li>
-                <li><Link to="/booking">Booking</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="/signin">Sign In</Link></li>
-                <li><Link to="/signup">Sign Up</Link></li>
+                <li><Link to="/About">About</Link></li>
+                <li><Link to="/Services">Services</Link></li>
+                <li><Link to="/Experts">Experts</Link></li>
+                <li><Link to="/Booking">Booking</Link></li>
+                <li><Link to="/Contact">Contact</Link></li>
+                <li><Link to="/SignIn">
+                <button>Sign In</button>
+                </Link></li>
+                <li><Link to="/SignUp">
+                <button>Sign Up</button>
+                </Link></li>
             </ul>
         </nav>
     )
