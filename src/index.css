@@ -149,7 +149,7 @@ html {
   /* padding: 0 2px; */
   height: 100%; /* Makes the body element full screen */
   scroll-behavior: smooth; /* Makes normal scrolling smooth */
-  transition: all ease-out;
+  transition: all ease-in-out;
   line-height: 1.7;
   font-family: var(--font-neue);
 }
@@ -182,7 +182,7 @@ canvas {
 }
 
 input,
-button,
+/* button, */
 textarea,
 select {
   font: inherit; /* Makes these elements inherit fonts */
