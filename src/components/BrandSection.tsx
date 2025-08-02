@@ -19,13 +19,6 @@ const BrandSection = () => {
 
     return (
         <section aria-label="Brand Section" className="container py-16 px-4 md:px-20">
-            {/* <div className="flex fle">
-                {brandImages.map((image, index) => (
-                    <img key={index} src={image} alt={`Brand ${index + 1}`}  />
-
-                ))}
-            </div> */}
-
             <Carousel>
                 <CarouselContent>
                     {brandImages.map((image, index) => (
