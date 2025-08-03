@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AlignJustify } from "lucide-react";
-import Logo from "../assets/logo.svg";
+import Logo from "../assets/Logo.svg";
 import { Button } from "./components/ui/button";
 import { useState } from "react";
 import { X } from "lucide-react";
