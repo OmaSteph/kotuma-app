@@ -6,7 +6,7 @@ const Layout = () => {
     return (
         <div className="layout">
             <Navbar />
-            <main className="text-kotumagold font-neue p-4">
+            <main className="text-kotumagold font-neue">
                 <Outlet />
             </main>
             <Footer />
