@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { AlignJustify } from "lucide-react";
 import { Button } from "./components/ui/button";
+import Logo from "@assets/logo.svg";
 import { useState } from "react";
 import { X } from "lucide-react";
 import { NavLinks } from "./NavLinks";
@@ -17,7 +18,7 @@ const Navbar = () => {
         <h1 className="sr-only">Kotuma</h1>
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-1">
-            <img src="/logo.svg" alt="Kotuma Logo" className="w-8 h-8" />
+            <img src={Logo} alt="Kotuma Logo" className="w-8 h-8" />
             <span className="text-3xl font-bold">Kotuma</span>
           </Link>
         </div>
