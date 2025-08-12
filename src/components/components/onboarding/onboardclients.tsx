@@ -5,7 +5,8 @@ const OnboardClients= ()=>{
   return(
     
         <div className="w-[600px] mt-0"> 
-            <h3> </h3>
+            <h3 className="text-[#292929] text-[32px] font-semibold">Let's start with some basic information </h3>
+            <p className="text-[#9DA4AE] font-mediumgi"> This helps us to connect you with the right lawyers in your area</p>
 <form className="space-y-5">
     <fieldset className="border rounded-2xl p-2">
  <label className="px-2">Full Name</label>   

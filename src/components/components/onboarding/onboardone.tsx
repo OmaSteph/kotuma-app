@@ -1,6 +1,7 @@
 import { Button } from "../ui/button"
-
+import { useNavigate } from "react-router-dom"
 const OnboardOne = ()=>{
+    const navigate= useNavigate()
     return(
         <section className="flex justify-center items-center min-h-[60vh]">
             <div>
@@ -37,7 +38,7 @@ const OnboardOne = ()=>{
                 
                 </div>
             </div>
-            <Button className="w-full mt-5"> Proceed</Button>
+            <Button onClick={()=>navigate("/onboarding/onboardclients")} className="w-full mt-5"> Proceed</Button>
             </div>
         </section>
     )
