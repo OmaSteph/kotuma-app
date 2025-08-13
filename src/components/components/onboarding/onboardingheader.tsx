@@ -12,4 +12,4 @@ const OnboardingHeader = ()=>{
         </header>
     )
 }
-export default OnboardingHeader
+export default OnboardingHeader 
