@@ -11,7 +11,7 @@ const OnboardClients = () => {
   });
 
   // Update state on input change
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -20,7 +20,7 @@ const OnboardClients = () => {
   };
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
     console.log("Form Data:", formData);
     // You can send formData to API here
