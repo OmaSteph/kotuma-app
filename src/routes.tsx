@@ -9,6 +9,9 @@ import Booking from './pages/Booking';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
+import OnboardingLayout from './layouts/onboardinglayout.tsx'
+import OnboardClients from '@components/components/onboarding/onboardclients.tsx';
+
 export const routes = [
     {   
         path: "/", 
@@ -20,8 +23,15 @@ export const routes = [
             { path: "services", element: <Services /> },
             { path: "experts", element: <Experts /> },
             { path: "booking", element: <Booking /> },
+            
+        ]
+    },
+    {
+        path: "/onboarding", element:<OnboardingLayout/>,
+        children:[
             { path: "signin", element: <SignIn /> },
             { path: "signup", element: <SignUp /> },
+            { path: "onboardclients", element: <OnboardClients/>}
         ]
     }
 ]
