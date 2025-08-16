@@ -1,4 +1,4 @@
-import React from "react";
+
 import Avatar from "../assets/lawyer.png";
 import Practice from "../assets/practice.svg";
 
