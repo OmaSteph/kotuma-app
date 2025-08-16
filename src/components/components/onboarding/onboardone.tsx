@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 const OnboardOne = () => {
   const navigate = useNavigate();
-  const [state, setState] = useState({ onboard: "" });
+  const [ , setState] = useState({ onboard: "" });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({ onboard: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate("/onboarding/onboardclients");
   };
