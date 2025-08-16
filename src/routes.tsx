@@ -14,29 +14,41 @@ import Dashboard from "@pages/Dashboard";
 import Cases from "@pages/Cases";
 import LawyerProfile from "@pages/LawyerProfile";
 
+import OnboardingLayout from './layouts/onboardinglayout.tsx'
+import OnboardClients from '@components/components/onboarding/onboardclients.tsx';
+
 export const routes = [
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      { index: true, element: <Home /> },
-      { path: "about", element: <About /> },
-      { path: "contact", element: <Contact /> },
-      { path: "services", element: <Services /> },
-      { path: "experts", element: <Experts /> },
-      { path: "signin", element: <SignIn /> },
-      { path: "signup", element: <SignUp /> },
-    ],
-  },
-  {
-    path: "/",
-    element: <AuthenticatedLayout />,
-    children: [
-      { path: "dashboard", element: <Dashboard /> },
-      { path: "lawyers", element: <Lawyers /> },
-      { path: "lawyers/:id", element: <LawyerProfile /> },
-      { path: "cases", element: <Cases /> },
-      { path: "booking", element: <Booking /> },
-    ],
-  },
-];
+    {   
+        path: "/", 
+        element: <Layout />,
+        children: [
+            { index: true, element: <Home /> },
+            { path: "about", element: <About /> },
+            { path: "contact", element: <Contact /> },
+            { path: "services", element: <Services /> },
+            { path: "experts", element: <Experts /> },
+            { path: "booking", element: <Booking /> },
+            
+        ]
+    },
+    {
+        path: "/onboarding", 
+        element:<OnboardingLayout/>,
+        children:[
+            { path: "signin", element: <SignIn /> },
+            { path: "signup", element: <SignUp /> },
+            { path: "onboardclients", element: <OnboardClients/>}
+        ]
+    },
+    {
+        path: "/",
+        element: <AuthenticatedLayout />,
+        children: [
+            { path: "dashboard", element: <Dashboard /> },
+            { path: "lawyers", element: <Lawyers /> },
+            { path: "lawyers/:id", element: <LawyerProfile /> },
+            { path: "cases", element: <Cases /> },
+            { path: "booking", element: <Booking /> },
+         ]
+      }
+  ]

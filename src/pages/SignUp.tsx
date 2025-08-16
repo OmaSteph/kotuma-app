@@ -1,5 +1,11 @@
+import OnboardOne from "@components/components/onboarding/onboardone"
+
 const SignUp = () => {
-  return <h1>Sign Up Page</h1>
+  return (
+    <div>
+      <OnboardOne/>
+    </div>
+  )
 }
 
 export default SignUp
