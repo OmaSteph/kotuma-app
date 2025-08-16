@@ -1,44 +1,72 @@
 
 import Logo from "@assets/logo.svg";
 import { Link } from "react-router-dom";
+// import { FaFacebook, FaLinkedin, FaInstagram} from "react-icons/fa"
 
 const Footer = () => {
   return (
    <section className="container bg-darkbluebg text-white px-8 py-16 lg:p-16">
-   <div className="flex items-center gap-2">
-      <img src={Logo} alt="Kotuma Logo" className="w-8 h-8" />
-      <span className="text-3xl font-bold">Kotuma</span> 
-      <div>
-        <div className="flex-col items-center gap-2">
-        <p>Useful Links</p>
-        <p>Godwin</p>
-        <p>Tamaraetariemi</p>
-        <p>Gidah</p>
-        <Link to ="/">Home Page</Link>
-        <Link to ="/Contact">Contact Us</Link>
-        <Link to ="/Services">Services</Link>
-        <Link to ="/Experts">Experts</Link>
+    <div className="flex gap-2 justify-between">
+      
+      <div className="flex items-start gap-2">
+        <img src={Logo} alt="Kotuma Logo" className="w-8 h-8" />
+        <span className="text-3xl font-bold">Kotuma</span> 
+      </div>
+      <div className="flex gap-2.5">
+        <div className="flex justify-between gap-8">
+          <div className="flex flex-col gap-3.5">
+        <p className="font-inter text-sm font-bold">Useful Links</p>
+        <div className="flex flex-col gap-3 text-sm leading-5">
+          <Link to ="/">Home Page</Link>
+          <Link to ="/Contact">Contact Us</Link>
+          <Link to ="/Services">Services</Link>
+          <Link to ="/Experts">Experts</Link>
+        </div>
         </div>
 
-        <p>Support</p>
+        <div className="flex flex-col gap-3.5">
+        <p className="font-inter text-sm font-bold">Support</p>
+        <div className="flex flex-col gap-3 text-sm leading-5">
         <Link to ="/Support">Support Center</Link>
         <Link to ="/Feedback">Feedback</Link>
         <Link to ="/Testimonials">Testimonials</Link>
         <Link to ="/FAQ">FAQ</Link>
         <Link to ="/Careers">Careers</Link>
-
-        <p>Contact Information</p>
-        <p>123 Kotuma St, Tech City, TC 12345</p>
-        <p>+1 (234) 567-8901</p>
-        <p>info@kotuma.com</p>
         </div>
+        </div>
+
+        <div className="flex flex-col gap-3.5">
+        <p className="font-inter text-sm font-bold">Contact Information</p>
+        <div className="flex flex-col gap-3 text-sm leading-5">
+          <p>123 Kotuma St, Tech City, TC 12345</p>
+          <p>+1 (234) 567-8901</p>
+          <p>info@kotuma.com</p>
+        <div className="flex gap-2">
+          <Link to="/Facebook">Facebook</Link>
+          <Link to="/Twitter">Twitter</Link>
+          <Link to="/LinkedIn">LinkedIn</Link>
+          <Link to="/Instagram">Instagram</Link>
+        </div>
+        </div>
+        </div>
+        </div>
+
+      </div>
     </div>
 
-      <p>2025 Kotuma. All rights reserved.</p>
+    <hr className="border-blue-950" />
+    <div className="flex justify-between items-center mt-8">
+      <div>
+        <p>2025 Kotuma. All rights reserved.</p>
+      </div>
 
-      <Link to="/PrivacyPolicy">Privacy Policy</Link>
-      <Link to="/TermsOfService">Terms of Service</Link>
-      <Link to="/CookieSettings">Cookie Settings</Link>
+      <div className="flex gap-6 text-decoration-line: underline">
+        <Link to="/PrivacyPolicy">Privacy Policy</Link>
+        <Link to="/TermsOfService">Terms of Service</Link>
+        <Link to="/CookieSettings">Cookie Settings</Link>
+      </div>
+    </div>
+
    </section>
   )
 }
