@@ -59,14 +59,14 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="border-blue-950" />
+      {/* <hr className="border-blue-950" /> */}
       
-      <div className="flex justify-between items-center mt-4">
-        <div className="text-base font-neue">
+      <div className="border-t border-gray-700 flex justify-between items-center">
+        <div className="text-base font-neue mt-4">
           <p>&copy; 2025 Kotuma. All rights reserved.</p>
         </div>
 
-        <div className="flex gap-6 font-roboto text-sm text-decoration-line: underline">
+        <div className="flex gap-6 mt-4 font-roboto text-sm text-decoration-line: underline">
           <Link to="/PrivacyPolicy">Privacy Policy</Link>
           <Link to="/TermsOfService">Terms of Service</Link>
           <Link to="/CookieSettings">Cookie Settings</Link>
