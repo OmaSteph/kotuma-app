@@ -7,8 +7,7 @@ export default function ContactUs() {
     <section className="font-neue text-kotumablack">
       {/* Hero Section */}
       <div
-        className="relative w-full max-w-[1440px] h-[598px] mx-auto bg-cover bg-center"
-        style={{ backgroundImage: "url('/src/assets/contact-bg.jpg')" }}
+        className="relative w-full max-w-[1440px] h-[598px] mx-auto bg-cover bg-center bg-[url('assets/contact-bg.jpg')]"
       >
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center text-white px-4">
@@ -84,7 +83,7 @@ export default function ContactUs() {
         <div className="relative bg-white p-8 rounded-lg flex flex-col items-center text-center">
           {/* Watermark Logo */}
           <img
-            src="/src/assets/kotuma-watermark.png"
+            src="../assets/kotuma-watermark.png"
             alt="Kotuma Watermark"
             className="
     absolute
@@ -109,7 +108,7 @@ export default function ContactUs() {
             }}
           >
             <img
-              src="/src/assets/person-support.png"
+              src="/assets/person-support.png"
               alt="person support"
               style={{
                 width: "54.08px", // or whatever size you want inside
