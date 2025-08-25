@@ -5,7 +5,7 @@ import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <section className="container bg-darkbluebg text-white px-8 py-16 lg:p-16">
+    <footer className="container bg-darkbluebg text-white px-8 py-16 lg:p-16">
       <div className="flex gap-2 justify-between mb-8">
         <div className="flex items-start gap-2">
           <img src={Logo} alt="Kotuma Logo" className="w-8 h-8" />
@@ -72,7 +72,7 @@ const Footer = () => {
           <Link to="/CookieSettings">Cookie Settings</Link>
         </div>
       </div>
-    </section>
+    </footer>
   );
 };
 

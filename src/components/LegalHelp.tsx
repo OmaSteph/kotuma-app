@@ -26,16 +26,17 @@ const LegalHelp = () => {
         },
     ];
     return (
-        <section aria-label="Legal Help" className="flex flex-col gap-65 px-6 py-12 lg:p-12">
-            <div className="container h-[162px] flex justify-between">
-            <h1 className="font-neue font-bold text-[64px] tracking-tighter leading-none w-[543px]">Making Legal Help Accessible to All</h1>
-            <div className="w-[508px] flex flex-col gap-4">
-            <p className="font-neue font-normal text-[16px] leading-[24px] h-[96px]">
-                At Kotuma, we believe everyone deserves trusted legal support. We connect individuals, businesses, and vulnerable communities with verified lawyers across Africa. Our platform makes legal services easy, safe, and affordable for all.
-            </p>
-            <Button className="bg-kotumablue text-sm font-bold font-inter w-[152px] h-[50px]">Get Started</Button>
-            </div>
-            </div>
+        <section aria-label="Legal Help" className="pt-32">
+            <div className="container mx-auto px-5 lg:px-16 grid gap-65">
+                <div className="flex justify-between items-center">
+                    <h1 className="font-neue font-bold text-[64px] tracking-tighter leading-none max-w-[543px]">Making Legal Help Accessible to All</h1>
+                    <div className="max-w-[508px] flex flex-col gap-4">
+                        <p className="font-neue font-normal text-[16px] leading-[24px]">
+                            At Kotuma, we believe everyone deserves trusted legal support. We connect individuals, businesses, and vulnerable communities with verified lawyers across Africa. Our platform makes legal services easy, safe, and affordable for all.
+                        </p>
+                        <Button className="bg-kotumablue text-sm font-bold font-inter w-[152px] h-[50px]">Get Started</Button>
+                    </div>
+                </div>
 
             <div className="flex items-center justify-items-center mb-9">
                 {LegalHelpAreas.map((item, index) => (
@@ -44,6 +45,7 @@ const LegalHelp = () => {
                         <img src={item.image} alt={item.title} className="py-6" />
                     </div>
                 ))}
+            </div>
             </div>
         </section>
     )

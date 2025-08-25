@@ -1,13 +1,15 @@
 
 import LegalHelp from "../components/LegalHelp";
 import ChooseKotuma from "../components/ChooseKotuma";
+import WhatWeDo from "../components/WhatWeDo";
 
 const About = () => {
   return (
-    <div className="px-4 py-16">
+    <>
     <LegalHelp />
     <ChooseKotuma />
-    </div>
+    <WhatWeDo />
+    </>
   );
 }
 
