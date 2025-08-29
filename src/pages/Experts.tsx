@@ -1,6 +1,9 @@
+
+import ExpertView from '@components/ExpertView'
+
 const Experts = () => {
   return (
-    <h1>Our Experts Page</h1>
+    <ExpertView />
   )
 }
 

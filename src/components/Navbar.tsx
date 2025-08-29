@@ -11,9 +11,10 @@ const Navbar = () => {
 
   return (
     <header className="shadow-md fixed top-0 left-0 w-full z-50 ">
-      <nav
+      <div className="container bg-white lg:px-16 p-4 gap-4">
+        <nav
         arial-label="Global-Navigation"
-        className="container bg-white flex items-center justify-between lg:px-16 p-4 gap-4"
+        className="flex items-center justify-between w-full"
       >
         <h1 className="sr-only">Kotuma</h1>
         <div className="flex items-center gap-2">
@@ -73,6 +74,7 @@ const Navbar = () => {
               </div>
             </div>
           )}
+      </div>
     </header>
   );
 };
