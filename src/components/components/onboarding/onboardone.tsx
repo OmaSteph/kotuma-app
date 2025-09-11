@@ -1,18 +1,33 @@
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useOnboarding } from "@components/components/onboarding/onboarding-context";
+
+type Choice = "legal-help" | "returning" | "lawyer" | "";
+
 const OnboardOne = () => {
   const navigate = useNavigate();
-  const [ , setState] = useState({ onboard: "" });
+  const { setPathway } = useOnboarding();
+  const [onboard, setOnboard] = useState<Choice>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ onboard: e.target.value });
+    const val = e.target.value as Choice;
+    setOnboard(val);
+    setPathway(val === "lawyer" ? "lawyer" : "client");
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    navigate("/onboarding/onboardclients");
+    if (onboard === "lawyer") navigate("/onboarding/onboardlawyers");
+    else if (onboard === "legal-help") navigate("/onboarding/onboardclients/basic-info");
+    else if (onboard === "returning") navigate("/onboarding/signin");
   };
+
+  const box = (active: boolean) =>
+    `flex gap-4 items-start py-5 px-4 border border-[#E5e7eb] shadow-md rounded-[10px] ${
+      active ? "bg-blue-400/20" : "hover:bg-blue-400/10"
+    }`;
+
   return (
     <section className="flex justify-center items-center min-h-[60vh]">
       <form>
@@ -20,73 +35,61 @@ const OnboardOne = () => {
           How can we help you?
         </h3>
         <p className="font-medium text-[#9da4ae] tracking-tighter">
-          {" "}
           Choose the options that best describes what you're looking for
         </p>
-        {/* radio button begins */}
+
         <div className="mt-2.5 space-y-5">
-          {/*radio 1  */}
-          <div className="flex gap-4 items-start py-5 px-4 border border-[#E5e7eb] shadow-md rounded-[10px] hover:bg-blue-400 ">
+          <label className={box(onboard === "legal-help")}>
             <input
               type="radio"
               className="w-6 h-6 mt-1"
               name="onboard"
               value="legal-help"
+              checked={onboard === "legal-help"}
               onChange={handleChange}
             />
             <div>
               <p className="font-semibold tracking-tight text-gray-800">
-                {" "}
                 I am new and need legal help
               </p>
-              <p>
-                {" "}
-                Connect with qualified lawyers who can help you with your legal
-                matter
-              </p>
+              <p>Connect with qualified lawyers who can help you with your legal matter</p>
             </div>
-          </div>
-          {/* radio 2 */}
-          <div className="flex gap-4 items-start py-5 px-4 border border-[#E5e7eb] shadow-md rounded-[10px] hover:bg-blue-400">
+          </label>
+
+          <label className={box(onboard === "returning")}>
             <input
               type="radio"
               className="w-6 h-6 mt-1"
               name="onboard"
-              value={"returning"}
+              value="returning"
+              checked={onboard === "returning"}
               onChange={handleChange}
             />
             <div>
               <p className="font-semibold tracking-tight text-gray-800">
-                {" "}
-                I'm a returning clients
+                I'm a returning client
               </p>
-              <p> Sign in to access your account with new legal matters</p>
+              <p>Sign in to access your account with new legal matters</p>
             </div>
-          </div>
-          {/*radio 3  */}
-          <div className="flex gap-4 items-start py-5 px-4 border border-[#E5e7eb] shadow-md rounded-[10px] hover:bg-blue-400">
+          </label>
+
+          <label className={box(onboard === "lawyer")}>
             <input
               type="radio"
               className="w-6 h-6 mt-1"
               name="onboard"
               value="lawyer"
+              checked={onboard === "lawyer"}
               onChange={handleChange}
             />
             <div>
-              <p className="font-semibold tracking-tight text-gray-800">
-                {" "}
-                I'm a lawyer
-              </p>
-              <p>
-                {" "}
-                Join our network and connect with clients who need your
-                expertise
-              </p>
+              <p className="font-semibold tracking-tight text-gray-800">I'm a lawyer</p>
+              <p>Join our network and connect with clients who need your expertise</p>
             </div>
-          </div>
+          </label>
         </div>
-        <Button className="w-full mt-5" onClick={handleSubmit}>
-          {" "}
+
+        <Button className="w-full mt-5" onClick={handleSubmit} disabled={!onboard}>
           Proceed
         </Button>
       </form>
