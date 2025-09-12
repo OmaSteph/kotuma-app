@@ -103,6 +103,7 @@ export default function ContactUs() {
         top-[75%] -translate-y-1/2      
       "
     />
+
           {/* Logo Circle */}
           <div
             className="relative z-10 bg-kotumagold flex items-center justify-center mb-4"
@@ -114,6 +115,7 @@ export default function ContactUs() {
               transform: "rotate(0deg)",
             }}
           >
+            
            <img
       src={personSupport}
       alt="person support"

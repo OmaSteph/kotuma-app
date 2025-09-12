@@ -1,5 +1,16 @@
+
+import LegalHelp from "../components/LegalHelp";
+import ChooseKotuma from "../components/ChooseKotuma";
+import WhatWeDo from "../components/WhatWeDo";
+
 const About = () => {
-  return <h1>About Us Page</h1>
+  return (
+    <>
+    <LegalHelp />
+    <ChooseKotuma />
+    <WhatWeDo />
+    </>
+  );
 }
 
 export default About

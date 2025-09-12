@@ -18,6 +18,7 @@
   --color-kotumagrey: #8D8D8D;
   --color-kotumagreen: #00FF4D;
   --color-dividerblue: #252940;
+  --color-borderwhite: #E8E8E8;
 
   --font-neue: 'Neue Montreal', sans-serif;
   --font-inter: 'Inter', sans-serif;
@@ -152,6 +153,9 @@
 body,
 html {
   /* padding: 0 2px; */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  width: 100vw; /* Makes the body element full screen */
   height: 100%; /* Makes the body element full screen */
   scroll-behavior: smooth; /* Makes normal scrolling smooth */
   transition: all ease-in-out;
