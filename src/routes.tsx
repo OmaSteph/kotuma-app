@@ -34,7 +34,7 @@ export const routes = [
       { path: "contact", element: <Contact /> },
       { path: "services", element: <Services /> },
       { path: "experts", element: <Experts /> },
-      { path: "booking", element: <Booking /> },
+      // { path: "booking", element: <Booking /> },
     ],
   },
 

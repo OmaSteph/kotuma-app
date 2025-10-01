@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import Avatar from "../assets/lawyer.png";
 import Practice from "../assets/practice.svg";
 
@@ -77,9 +78,9 @@ export default function LawyerProfile() {
       </div>
 
       <div className="flex gap-16 mt-20">
-        <button className="py-4 px-8 rounded-lg bg-[#03156B] border border-[#03156B] font-bold text-[#FFF8FD]">
+        <Link to="/booking" className="py-4 px-8 rounded-lg bg-[#03156B] border border-[#03156B] font-bold text-[#FFF8FD]">
           Schedule consultation
-        </button>
+        </Link>
         <button className="py-4 px-8 rounded-lg bg-white border-2 border-[#03156B] font-bold text-[#03156B] ">
           As a question
         </button>
