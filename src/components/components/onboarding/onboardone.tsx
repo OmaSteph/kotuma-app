@@ -20,7 +20,7 @@ const OnboardOne = () => {
     e.preventDefault();
     if (onboard === "lawyer") navigate("/onboarding/onboardlawyers");
     else if (onboard === "legal-help") navigate("/onboarding/onboardclients/basic-info");
-    else if (onboard === "returning") navigate("/onboarding/signin");
+    else if (onboard === "returning") navigate("/onboarding/onboardclients/login");
   };
 
   const box = (active: boolean) =>

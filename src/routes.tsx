@@ -23,6 +23,10 @@ import LawyerBasicInfo from "@components/components/onboarding/onboardlawyers/ba
 import LawyerLegalExpertise from "@components/components/onboarding/onboardlawyers/legal-expertise";
 import LawyerCreateProfile from "@components/components/onboarding/onboardlawyers/create-profile";
 import LawyerAccountSetup from "@components/components/onboarding/onboardlawyers/account-setup";
+import ClientsLogin from "@components/components/onboarding/onboardclients/clients-login";
+import ClientsLegalSituation from "@components/components/onboarding/onboardclients/legal-situation";
+import ClientsPreference from "@components/components/onboarding/onboardclients/clients-preference";
+import ClientsCreateAccount from "@components/components/onboarding/onboardclients/create-accounts";
 
 export const routes = [
   {
@@ -51,6 +55,10 @@ export const routes = [
         children: [
           { index: true, element: <ClientBasicInfo /> },
           { path: "basic-info", element: <ClientBasicInfo /> },
+          { path: "login", element: <ClientsLogin/>},
+          { path: "legal-situation", element: <ClientsLegalSituation /> },
+          { path: "preferences", element: <ClientsPreference /> },
+          { path: "create-account", element: <ClientsCreateAccount /> },
         ],
       },
 
