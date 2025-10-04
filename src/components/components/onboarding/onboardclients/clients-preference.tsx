@@ -1,30 +1,10 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
-import { Input } from "../../ui/input";
-import { Textarea } from "@components/components/ui/textarea";
 
-const SituationCategories = [
-  "Corporate Law",
-  "Family law",
-  "IP Law",
-  "Criminal Law",
-  "Contract Law",
-  "Real Estate Law",
-  "Entertainment Law",
-  "Others",
-] as const;
-
-
-
- const timeSlots = [
-        "Immediately", "Within a week", "Within 2 weeks", 
-        "Within a month", "Custom date",
-    ];
 
 const ClientsPreference = () => {
   const navigate = useNavigate();
-  const [period, setPeriod] = useState("");
+
  
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
