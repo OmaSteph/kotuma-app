@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
+import { useNavigate } from "react-router-dom";
 
 const ClientBasicInfo = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const ClientBasicInfo = () => {
     phone: "",
     location: "",
   });
+  const navigate = useNavigate();
 
   // Update state on input change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +25,7 @@ const ClientBasicInfo = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form Data:", formData);
+    navigate("/onboarding/onboardclients/legal-situation");
   };
 
   return (
