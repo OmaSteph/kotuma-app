@@ -29,7 +29,7 @@ const OnboardOne = () => {
     }`;
 
   return (
-    <section className="flex justify-center items-center min-h-[60vh]">
+    <section className="flex justify-center align-items items-center min-h-[60vh] px-4 m-4">
       <form>
         <h3 className="font-semibold text-[2rem] tracking-tighter text-gray-800">
           How can we help you?

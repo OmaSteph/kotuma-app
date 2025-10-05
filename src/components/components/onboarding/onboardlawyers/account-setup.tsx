@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
-import { Eye, EyeOff } from "lucide-react"; // 👈 icons
+import { Eye, EyeOff } from "lucide-react";
 
 const LawyerAccountSetup = () => {
   const navigate = useNavigate();
@@ -30,17 +30,17 @@ const LawyerAccountSetup = () => {
   };
 
   return (
-    <div className="w-full max-w-[640px] md:max-w-[600px]">
-      <h3 className="text-[#292929] text-[28px] md:text-[32px] font-semibold">
+    <div className="w-full max-w-lg sm:max-w-xl md:max-w-2xl">
+      <h3 className="text-[#292929] text-xl sm:text-2xl md:text-3xl font-semibold">
         Create your secure account
       </h3>
-      <p className="text-[#98A2B3] text-sm md:text-base font-medium">
+      <p className="text-[#98A2B3] text-sm sm:text-base font-medium">
         Your account keeps your information safe and lets you communicate with clients securely.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-5 mt-6">
-        <fieldset className="border border-[#E5E7EB] rounded-2xl p-2 relative">
-          <label className="px-2 block text-xs md:text-sm font-medium text-[#667085]">
+        <fieldset className="border border-gray-200 rounded-2xl p-3">
+          <label className="block text-xs sm:text-sm font-medium text-[#667085] mb-1">
             Password
           </label>
           <div className="relative">
@@ -49,7 +49,7 @@ const LawyerAccountSetup = () => {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border-0 w-full px-3 py-3 h-12 pr-12"
+              className="w-full h-11 sm:h-12 border-0 px-3 pr-12 focus-visible:ring-0"
             />
             <button
               type="button"
@@ -62,8 +62,8 @@ const LawyerAccountSetup = () => {
           </div>
         </fieldset>
 
-        <fieldset className="border border-[#E5E7EB] rounded-2xl p-2 relative">
-          <label className="px-2 block text-xs md:text-sm font-medium text-[#667085]">
+        <fieldset className="border border-gray-200 rounded-2xl p-3">
+          <label className="block text-xs sm:text-sm font-medium text-[#667085] mb-1">
             Confirm Password
           </label>
           <div className="relative">
@@ -72,7 +72,7 @@ const LawyerAccountSetup = () => {
               placeholder="Confirm Password"
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
-              className="border-0 w-full px-3 py-3 h-12 pr-12"
+              className="w-full h-11 sm:h-12 border-0 px-3 pr-12 focus-visible:ring-0"
             />
             <button
               type="button"
@@ -87,7 +87,10 @@ const LawyerAccountSetup = () => {
 
         {error && <p className="text-red-600 text-sm px-1">{error}</p>}
 
-        <Button type="submit" className="w-full h-12 text-[15px]">
+        <Button
+          type="submit"
+          className="w-full h-11 sm:h-12 text-sm sm:text-base bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-white font-medium"
+        >
           Proceed
         </Button>
       </form>

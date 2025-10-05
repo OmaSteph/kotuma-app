@@ -21,7 +21,6 @@ import ClientBasicInfo from "@components/components/onboarding/onboardclients/ba
 
 import LawyerBasicInfo from "@components/components/onboarding/onboardlawyers/basic-info";
 import LawyerLegalExpertise from "@components/components/onboarding/onboardlawyers/legal-expertise";
-import LawyerCreateProfile from "@components/components/onboarding/onboardlawyers/create-profile";
 import LawyerAccountSetup from "@components/components/onboarding/onboardlawyers/account-setup";
 import ClientsLogin from "@components/components/onboarding/onboardclients/clients-login";
 import ClientsLegalSituation from "@components/components/onboarding/onboardclients/legal-situation";
@@ -38,7 +37,7 @@ export const routes = [
       { path: "contact", element: <Contact /> },
       { path: "services", element: <Services /> },
       { path: "experts", element: <Experts /> },
-      // { path: "booking", element: <Booking /> },
+      { path: "booking", element: <Booking /> },
     ],
   },
 
@@ -69,7 +68,6 @@ export const routes = [
           { index: true, element: <LawyerBasicInfo /> },
           { path: "basic-info", element: <LawyerBasicInfo />},
           { path: "legal-expertise", element: <LawyerLegalExpertise /> },
-          { path: "create-profile", element: <LawyerCreateProfile /> }, 
           { path: "account-setup", element: <LawyerAccountSetup /> },
         ],
       },
