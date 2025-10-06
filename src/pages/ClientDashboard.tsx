@@ -145,7 +145,7 @@ export default function ClientDashboard() {
                   <div className="text-sm text-gray-700 space-y-1">
                     <p>Sign engagement agreement</p>
                     <div className="text-sm text-blue-600">
-                      Pending completion of consultation
+                      Pending Completion of Consultation
                     </div>
                   </div>
                 </div>
