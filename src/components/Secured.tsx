@@ -37,7 +37,7 @@ const Secured = () => {
                         </ul>
                     </CardContent>
                 </Card>
-                <div className="w-full max-w-[652px] grid grid-cols-2 gap-4 h-full h-[602px]">
+                <div className="w-full max-w-[652px] grid grid-cols-2 gap-4 h-full">
                     <div className="row-span-2 ">
                         <img src={img1} alt="law-balance-image" className="w-full !h-full object-cover rounded-lg" loading="lazy"  />
                     </div>

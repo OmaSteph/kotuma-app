@@ -11,9 +11,10 @@ const Navbar = () => {
 
   return (
     <header className="shadow-md fixed top-0 left-0 w-full z-50 ">
-      <nav
+      <div className="container bg-white lg:px-16 p-4 gap-4">
+        <nav
         arial-label="Global-Navigation"
-        className="container bg-white flex items-center justify-between lg:px-16 p-4 gap-4"
+        className="flex items-center justify-between w-full"
       >
         <h1 className="sr-only">Kotuma</h1>
         <div className="flex items-center gap-2">
@@ -43,12 +44,12 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden lg:flex items-center gap-4">
-          <Link to="/SignIn">
+          <Link to="/onboarding/signin">
             <Button variant="outline" className="border-kotumablue">
               Sign in
             </Button>
           </Link>
-          <Link to="/SignUp">
+          <Link to="/onboarding/signUp">
             <Button className="bg-kotumablue">Sign up</Button>
           </Link>
         </div>
@@ -62,17 +63,18 @@ const Navbar = () => {
               </ul>
 
               <div className="flex flex-col items-center gap-4 p-4 border-t border-kotumablue">
-                <Link to="/SignIn">
+                <Link to="/onboarding/signin">
                   <Button variant="outline" className="border-kotumablue">
                     Sign in
                   </Button>
                 </Link>
-                <Link to="/SignUp">
+                <Link to="/onboarding/signup">
                   <Button className="bg-kotumablue">Sign up</Button>
                 </Link>
               </div>
             </div>
           )}
+      </div>
     </header>
   );
 };
