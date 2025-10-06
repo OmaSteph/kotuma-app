@@ -10,6 +10,8 @@ import Booking from "./pages/Booking";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import LawyerDashboard from "./pages/LawyerDashboard";
+import ClientDashboard from "./pages/ClientDashboard";
+
 
 import AuthenticatedLayout from "@components/layouts/AuthenticatedLayouts";
 import Lawyers from "@pages/Lawyers";
@@ -42,6 +44,7 @@ export const routes = [
       { path: "signin", element: <SignIn /> },
       { path: "signup", element: <SignUp /> },
       { path: "lawyer-dashboard", element: <LawyerDashboard /> },
+      { path: "client-dashboard", element: <ClientDashboard /> },
     ],
   },
 
