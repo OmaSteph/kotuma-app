@@ -158,7 +158,7 @@ export default function ClientDashboard() {
                 <div>
                   <div className="text-black font-medium">Case Initiation</div>
                   <div className="text-sm text-gray-700">
-                    Start case strategy outline for wrongful termination
+                    Begin working with your lawyer on case strategy
                   </div>
                 </div>
               </li>
