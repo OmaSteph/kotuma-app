@@ -1,5 +1,5 @@
 import HomeIc from "@assets/CirclesFour (2).svg";
-import Eyes from "@assets/Eyes.svg";
+import Eyes from "@assets/eyes.svg";
 import Dresser from "@assets/Dresser.svg";
 import CalenderIc from "@assets/Calendar.svg";
 import VectorIc from "@assets/Vector.svg";
