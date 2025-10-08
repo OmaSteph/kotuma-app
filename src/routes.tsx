@@ -9,9 +9,6 @@ import Experts from "./pages/Experts";
 import Booking from "./pages/Booking";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import LawyerDashboard from "./pages/LawyerDashboard";
-import ClientDashboard from "./pages/ClientDashboard";
-
 
 import AuthenticatedLayout from "@components/layouts/AuthenticatedLayouts";
 import Lawyers from "@pages/Lawyers";
@@ -21,11 +18,13 @@ import LawyerProfile from "@pages/LawyerProfile";
 
 import OnboardingLayout from "./layouts/onboardinglayout";
 import ClientBasicInfo from "@components/components/onboarding/onboardclients/basic-info";
+
 import LawyerBasicInfo from "@components/components/onboarding/onboardlawyers/basic-info";
 import LawyerLegalExpertise from "@components/components/onboarding/onboardlawyers/legal-expertise";
-import LawyerCreateProfile from "@components/components/onboarding/onboardlawyers/create-profile";
-import LawyerAccountSetup from "@components/components/onboarding/onboardlawyers/account-setup";
+import LawyersCreateAccount from "@components/components/onboarding/onboardlawyers/create-account";
 import ClientsLogin from "@components/components/onboarding/onboardclients/clients-login";
+import LawyersLogin from "@components/components/onboarding/onboardlawyers/lawyers-login";
+
 import ClientsLegalSituation from "@components/components/onboarding/onboardclients/legal-situation";
 import ClientsPreference from "@components/components/onboarding/onboardclients/clients-preference";
 import ClientsCreateAccount from "@components/components/onboarding/onboardclients/create-accounts";
@@ -41,10 +40,6 @@ export const routes = [
       { path: "services", element: <Services /> },
       { path: "experts", element: <Experts /> },
       { path: "booking", element: <Booking /> },
-      { path: "signin", element: <SignIn /> },
-      { path: "signup", element: <SignUp /> },
-      { path: "lawyer-dashboard", element: <LawyerDashboard /> },
-      { path: "client-dashboard", element: <ClientDashboard /> },
     ],
   },
 
@@ -54,29 +49,30 @@ export const routes = [
     children: [
       { path: "signin", element: <SignIn /> },
       { path: "signup", element: <SignUp /> },
-
+      
       {
         path: "onboardclients",
         element: <Outlet />,
         children: [
           { index: true, element: <ClientBasicInfo /> },
           { path: "basic-info", element: <ClientBasicInfo /> },
-          { path: "login", element: <ClientsLogin /> },
+          { path: "clients-login", element: <ClientsLogin/>},
           { path: "legal-situation", element: <ClientsLegalSituation /> },
-          { path: "preferences", element: <ClientsPreference /> },
-          { path: "create-account", element: <ClientsCreateAccount /> },
+          { path: "clients-preference", element: <ClientsPreference /> },
+          { path: "create-accounts", element: <ClientsCreateAccount /> },
         ],
       },
 
       {
         path: "onboardlawyers",
-        element: <Outlet />,
+        element: <Outlet />,              
         children: [
           { index: true, element: <LawyerBasicInfo /> },
-          { path: "basic-info", element: <LawyerBasicInfo /> },
+          { path: "basic-info", element: <LawyerBasicInfo />},
           { path: "legal-expertise", element: <LawyerLegalExpertise /> },
-          { path: "create-profile", element: <LawyerCreateProfile /> },
-          { path: "account-setup", element: <LawyerAccountSetup /> },
+          { path: "create-account", element: <LawyersCreateAccount /> },
+          { path: "lawyers-login", element: <LawyersLogin/>},
+
         ],
       },
     ],

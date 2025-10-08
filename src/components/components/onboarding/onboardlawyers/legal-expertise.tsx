@@ -5,7 +5,7 @@ import { Input } from "../../ui/input";
 
 const PRACTICE_AREAS = [
   "Corporate Law",
-  "Family law",
+  "Family Law",
   "IP Law",
   "Criminal Law",
   "Contract Law",
@@ -32,101 +32,104 @@ const LawyerLegalExpertise = () => {
     useState<(typeof SERVICE_METHODS)[number] | "">("");
   const [currentArea, setCurrentArea] =
     useState<(typeof PRACTICE_AREAS)[number] | "">("");
-  const [currentYears, setCurrentYears] = useState(YEARS[1]); // "1 Year"
+  const [currentYears, setCurrentYears] = useState(YEARS[1]);
   const [practices, setPractices] = useState<Practice[]>([]);
 
+  const [bio, setBio] = useState("");
+
   const addPractice = () => {
-    if (!currentArea) return;
-    if (practices.some((p) => p.area === currentArea)) return;
-    setPractices((p) => [...p, { area: currentArea, years: currentYears }]);
+    if (!currentArea || practices.some((p) => p.area === currentArea)) return;
+    setPractices((prev) => [...prev, { area: currentArea, years: currentYears }]);
     setCurrentArea("");
     setCurrentYears(YEARS[1]);
   };
 
   const removePractice = (area: string) =>
-    setPractices((p) => p.filter((x) => x.area !== area));
+    setPractices((prev) => prev.filter((p) => p.area !== area));
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/onboarding/onboardlawyers/create-profile");
+    navigate("/onboarding/onboardlawyers/create-account");
   };
 
   return (
-    <div className="w-full max-w-[640px] md:max-w-[600px]">
-      <h3 className="text-[#292929] text-[28px] md:text-[32px] leading-tight font-semibold">
+    <div className="w-full max-w-lg px-4 py-4 sm:px-6 md:px-0">
+      {/* Header */}
+      <h3 className="text-[#292929] text-xl sm:text-2xl md:text-[1.9rem] font-semibold leading-tight">
         Tell us about your legal expertise
       </h3>
-      <p className="text-[#98A2B3] text-sm md:text-[15px] font-medium">
+
+      <p className="text-[#98A2B3] text-sm sm:text-base font-medium mt-1">
         The more specific you are, the better we can match you with clients
         seeking your expertise.
       </p>
 
-      <form onSubmit={handleNext} className="space-y-4 md:space-y-5 mt-5 md:mt-6">
-        <fieldset className="border border-[#E5E7EB] rounded-2xl p-2">
-          <label className="px-2 block text-xs md:text-sm font-medium text-[#667085]">
+      <form onSubmit={handleNext} className="mt-6 space-y-5 sm:space-y-6">
+        <fieldset className="border border-[#E5E7EB] rounded-2xl p-3">
+          <label className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1">
             Language Spoken
           </label>
           <Input
-            placeholder="Enter preferred Language"
+            placeholder="Enter preferred language"
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className="border-0 w-full px-3 py-3 h-12"
+            className="w-full h-11 sm:h-12 border-0 px-3 focus-visible:ring-0"
           />
         </fieldset>
 
-        <fieldset className="border border-[#E5E7EB] rounded-2xl p-2">
-          <label className="px-2 block text-xs md:text-sm font-medium text-[#667085]">
+        <fieldset className="border border-[#E5E7EB] rounded-2xl p-3">
+          <label className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1">
             Service Delivery Method
           </label>
           <select
             value={serviceMethod}
             onChange={(e) => setServiceMethod(e.target.value as any)}
-            className="w-full px-3 py-3 h-12 outline-none rounded-xl bg-transparent"
+            className="w-full h-11 sm:h-12 rounded-xl border-0 bg-transparent px-3 text-sm focus:outline-none focus:ring-0"
           >
             <option value="" disabled>
-              Choose Answer
+              Choose an option
             </option>
-            {SERVICE_METHODS.map((m) => (
-              <option key={m} value={m}>
-                {m}
+            {SERVICE_METHODS.map((method) => (
+              <option key={method} value={method}>
+                {method}
               </option>
             ))}
           </select>
         </fieldset>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <fieldset className="border border-[#E5E7EB] rounded-2xl p-2">
-            <label className="px-2 block text-xs md:text-sm font-medium text-[#667085]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <fieldset className="border border-[#E5E7EB] rounded-2xl p-3">
+            <label className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1">
               Practice Area
             </label>
             <select
               value={currentArea}
               onChange={(e) => setCurrentArea(e.target.value as any)}
-              className="w-full px-3 py-3 h-12 outline-none rounded-xl bg-transparent"
+              className="w-full h-11 sm:h-12 rounded-xl border-0 bg-transparent px-3 text-sm focus:outline-none focus:ring-0"
             >
               <option value="" disabled>
-                Area of Expertise
+                Select area
               </option>
-              {PRACTICE_AREAS.map((a) => (
-                <option key={a} value={a}>
-                  {a}
+              {PRACTICE_AREAS.map((area) => (
+                <option key={area} value={area}>
+                  {area}
                 </option>
               ))}
             </select>
           </fieldset>
 
-          <fieldset className="border border-[#E5E7EB] rounded-2xl p-2">
-            <label className="px-2 block text-xs md:text-sm font-medium text-[#667085]">
+          <fieldset className="border border-[#E5E7EB] rounded-2xl p-3">
+            <label className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1">
               Years of Experience
             </label>
             <select
               value={currentYears}
               onChange={(e) => setCurrentYears(e.target.value)}
-              className="w-full px-3 py-3 h-12 outline-none rounded-xl bg-transparent"
+              className="w-full h-11 sm:h-12 rounded-xl border-0 bg-transparent px-3 text-sm focus:outline-none focus:ring-0"
             >
-              {YEARS.map((y) => (
-                <option key={y} value={y}>
-                  {y}
+              {YEARS.map((year) => (
+                <option key={year} value={year}>
+                  {year}
                 </option>
               ))}
             </select>
@@ -136,14 +139,14 @@ const LawyerLegalExpertise = () => {
         <button
           type="button"
           onClick={addPractice}
-          className="w-full h-12 rounded-2xl border border-[#E5E7EB] text-[#111827] flex items-center justify-center gap-2"
+          className="w-full h-11 sm:h-12 rounded-2xl border border-[#E5E7EB] flex items-center justify-center gap-2 text-[#111827] hover:bg-gray-50"
         >
           <span className="text-lg leading-none">＋</span>
           <span className="text-sm font-medium">Add new practice area</span>
         </button>
 
         {practices.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mt-2">
             {practices.map((p) => (
               <span
                 key={p.area}
@@ -163,7 +166,24 @@ const LawyerLegalExpertise = () => {
           </div>
         )}
 
-        <Button type="submit" className="w-full h-12 text-[15px]">
+        <fieldset className="border border-gray-200 rounded-2xl p-3">
+          <label className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1">
+            Professional Bio
+          </label>
+          <textarea
+            rows={3}
+            placeholder="Professional bio and summary"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            className="w-full px-3 py-3 rounded-xl border-0 outline-none resize-y placeholder:text-[#98A2B3]"
+          />
+        </fieldset>
+
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          className="w-full h-11 sm:h-12 bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-[15px]"
+        >
           Proceed
         </Button>
       </form>
