@@ -3,33 +3,42 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useOnboarding } from "@components/components/onboarding/onboarding-context";
 
-type Choice = "legal-help" | "returning" | "lawyer" | "";
+type Choice = "legal-help" | "returning-client" | "lawyer" | "returning-lawyer" | "";
 
 const OnboardOne = () => {
   const navigate = useNavigate();
-  const { setPathway } = useOnboarding();
+  const { setPathway, setIsReturning } = useOnboarding();
   const [onboard, setOnboard] = useState<Choice>("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value as Choice;
     setOnboard(val);
-    setPathway(val === "lawyer" ? "lawyer" : "client");
+
+    const isReturningUser = val === "returning-client" || val === "returning-lawyer";
+    setIsReturning(isReturningUser);
+
+
+    if (val === "lawyer" || val === "returning-lawyer") {
+        setPathway("lawyer");
+    } else {
+        setPathway("client");
+    }
   };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (onboard === "lawyer") navigate("/onboarding/onboardlawyers");
+    if (onboard === "lawyer") navigate("/onboarding/onboardlawyers/basic-info");
+    else if (onboard === "returning-lawyer") navigate("/onboarding/onboardlawyers/lawyers-login");
     else if (onboard === "legal-help") navigate("/onboarding/onboardclients/basic-info");
-    else if (onboard === "returning") navigate("/onboarding/onboardclients/login");
+    else if (onboard === "returning-client") navigate("/onboarding/onboardclients/clients-login");
   };
 
   const box = (active: boolean) =>
     `flex gap-4 items-start py-5 px-4 border border-[#E5e7eb] shadow-md rounded-[10px] ${
       active ? "bg-blue-400/20" : "hover:bg-blue-400/10"
     }`;
-
   return (
-    <section className="flex justify-center items-center min-h-[60vh]">
+    <section className="w-full max-w-lg px-4 py-4 sm:px-6 md:px-0">
       <form>
         <h3 className="font-semibold text-[2rem] tracking-tighter text-gray-800">
           How can we help you?
@@ -56,13 +65,13 @@ const OnboardOne = () => {
             </div>
           </label>
 
-          <label className={box(onboard === "returning")}>
+          <label className={box(onboard === "returning-client")}>
             <input
               type="radio"
               className="w-6 h-6 mt-1"
               name="onboard"
-              value="returning"
-              checked={onboard === "returning"}
+              value="returning-client"
+              checked={onboard === "returning-client"}
               onChange={handleChange}
             />
             <div>
@@ -70,6 +79,23 @@ const OnboardOne = () => {
                 I'm a returning client
               </p>
               <p>Sign in to access your account with new legal matters</p>
+            </div>
+          </label>
+
+          <label className={box(onboard === "returning-lawyer")}>
+            <input
+              type="radio"
+              className="w-6 h-6 mt-1"
+              name="onboard"
+              value="returning-lawyer"
+              checked={onboard === "returning-lawyer"}
+              onChange={handleChange}
+            />
+            <div>
+              <p className="font-semibold tracking-tight text-gray-800">
+                I'm a returning lawyer
+              </p>
+              <p>Sign in to access your professional account and connect with clients</p>
             </div>
           </label>
 

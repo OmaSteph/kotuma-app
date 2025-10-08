@@ -14,11 +14,18 @@ const LawyerBasicInfo = () => {
     location: "",
   });
 
+  const [avatar, setAvatar] = useState<File | null>(null);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    setAvatar(file);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,27 +35,21 @@ const LawyerBasicInfo = () => {
 
   return (
     <div
-      className="
-        w-full 
-        max-w-[720px] 
-        md:max-w-[640px] 
-        lg:max-w-[620px] 
-        px-4 md:px-0
+      className="w-full max-w-lg px-4 py-4 sm:px-6 md:px-0
       "
     >
-      <h1 className="text-[#101828] text-[22px] md:text-[28px] lg:text-[32px] leading-tight font-semibold">
+      <h1 className="text-[#101828] text-xl sm:text-2xl md:text-3xl font-semibold">
         Let’s start with some basic information
       </h1>
-      <p className="text-[#98A2B3] font-medium mt-1">
+      <p className="text-[#98A2B3] text-sm sm:text-base font-medium mt-1">
         Complete your professional details to start receiving client referrals.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-6 space-y-4 md:space-y-5">
-        <fieldset className="rounded-2xl border border-[#E5E7EB] p-2">
+      <form onSubmit={handleSubmit} className="mt-6 space-y-6">
+        <fieldset className="rounded-2xl border border-gray-200 p-3">
           <label
             htmlFor="fullName"
-            className="px-2 block text-xs md:text-sm font-medium text-[#667085]"
-          >
+            className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1">
             Full Name
           </label>
           <Input
@@ -58,14 +59,15 @@ const LawyerBasicInfo = () => {
             value={formData.fullName}
             onChange={handleChange}
             placeholder="Enter Full Name"
-            className="h-11 md:h-12 border-0 focus-visible:ring-0 px-3"
+            className="h-11 sm:h-12 border-0 focus-visible:ring-0 px-3"
           />
         </fieldset>
 
-        <fieldset className="rounded-2xl border border-[#E5E7EB] p-2">
+        {/* Email Address Fieldset */}
+        <fieldset className="rounded-2xl border border-gray-200 p-3">
           <label
             htmlFor="email"
-            className="px-2 block text-xs md:text-sm font-medium text-[#667085]"
+            className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1"
           >
             Email Address
           </label>
@@ -76,14 +78,14 @@ const LawyerBasicInfo = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Enter Email Address"
-            className="h-11 md:h-12 border-0 focus-visible:ring-0 px-3"
+            className="h-11 sm:h-12 border-0 focus-visible:ring-0 px-3"
           />
         </fieldset>
 
-        <fieldset className="rounded-2xl border border-[#E5E7EB] p-2">
+        <fieldset className="rounded-2xl border border-gray-200 p-3">
           <label
             htmlFor="phone"
-            className="px-2 block text-xs md:text-sm font-medium text-[#667085]"
+            className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1"
           >
             Phone Number
           </label>
@@ -94,41 +96,109 @@ const LawyerBasicInfo = () => {
             value={formData.phone}
             onChange={handleChange}
             placeholder="Enter Phone Number"
-            className="h-11 md:h-12 border-0 focus-visible:ring-0 px-3"
+            className="h-11 sm:h-12 border-0 focus-visible:ring-0 px-3"
           />
         </fieldset>
 
-        <fieldset className="rounded-2xl border border-[#E5E7EB] p-2">
-          <label
-            htmlFor="employmentStatus"
-            className="px-2 block text-xs md:text-sm font-medium text-[#667085]"
-          >
-            Current Employment Status
-          </label>
-          <select
-            id="employmentStatus"
-            name="employmentStatus"
-            value={formData.employmentStatus}
-            onChange={handleChange}
-            className="
-              h-11 md:h-12 w-full rounded-xl border-0 px-3
-              text-sm focus:outline-none focus:ring-0
-              placeholder:text-[#98A2B3] bg-white
-            "
-          >
-            <option value="" disabled>
-              Select status
-            </option>
-            <option value="employed">Employed</option>
-            <option value="self-employed">Self-Employed</option>
-            <option value="not-employed">Not Employed</option>
-          </select>
-        </fieldset>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Employment Status Fieldset */}
+          <fieldset className="rounded-2xl border border-gray-200 p-3">
+            <label
+              htmlFor="employmentStatus"
+              className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1"
+            >
+              Current Employment Status
+            </label>
+            <select
+              id="employmentStatus"
+              name="employmentStatus"
+              value={formData.employmentStatus}
+              onChange={handleChange}
+              className="
+                h-11 sm:h-12 w-full rounded-xl border-0 px-3
+                text-sm focus:outline-none focus:ring-0
+                placeholder:text-gray-400 bg-white
+              "
+            >
+              <option value="" disabled>
+                Select status
+              </option>
+              <option value="employed">Employed</option>
+              <option value="self-employed">Self-Employed</option>
+              <option value="not-employed">Not Employed</option>
+            </select>
+          </fieldset>
 
-        <fieldset className="rounded-2xl border border-[#E5E7EB] p-2">
+          {/* Upload Photo */}
+          <fieldset className="rounded-2xl border border-gray-200 p-3">
+            <label
+              htmlFor="avatar"
+              className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-2"
+            >
+              Upload Photo
+            </label>
+            <div className="flex items-center gap-4">
+              {/* Preview Circle */}
+              <div className="w-14 h-14 rounded-full bg-white border border-gray-200 flex items-center justify-center overflow-hidden">
+                {avatar ? (
+                  <img
+                    src={URL.createObjectURL(avatar)}
+                    alt="Preview"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z"
+                      stroke="#667085"
+                      strokeWidth="1.5"
+                    />
+                    <path
+                      d="M21 22c0-3.9-4.03-7-9-7s-9 3.1-9 7"
+                      stroke="#667085"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                )}
+              </div>
+
+              {/* Upload Button */}
+              <div>
+                <input
+                  id="avatar"
+                  type="file"
+                  accept="image/*"
+                  onChange={onFile}
+                  className="hidden"
+                />
+                <label
+                  htmlFor="avatar"
+                  className="inline-flex items-center rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm cursor-pointer hover:bg-gray-50"
+                >
+                  Choose File
+                </label>
+                {avatar && (
+                  <div className="mt-1 text-xs text-[#667085] truncate max-w-[180px]">
+                    {avatar.name}
+                  </div>
+                )}
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {/* Location Fieldset */}
+        <fieldset className="rounded-2xl border border-gray-200 p-3">
           <label
             htmlFor="location"
-            className="px-2 block text-xs md:text-sm font-medium text-[#667085]"
+            className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1"
           >
             Location
           </label>
@@ -139,15 +209,18 @@ const LawyerBasicInfo = () => {
             value={formData.location}
             onChange={handleChange}
             placeholder="City, State."
-            className="h-11 md:h-12 border-0 focus-visible:ring-0 px-3"
+            className="h-11 sm:h-12 border-0 focus-visible:ring-0 px-3"
           />
         </fieldset>
 
+        {/* Submit Button */}
         <Button
           type="submit"
           className="
-            w-full h-11 md:h-12
+            w-full h-11 sm:h-12
             bg-[#0A1D5B] hover:bg-[#0A1D5B]/90
+            text-white font-medium
+            text-[15px]
           "
         >
           Proceed
