@@ -1,64 +1,60 @@
-import HomeIc from "@assets/CirclesFour (2).svg";
-import Eyes from "@assets/eyes.svg";
-import Dresser from "@assets/Dresser.svg";
 import CalenderIc from "@assets/Calendar.svg";
 import VectorIc from "@assets/Vector.svg";
 import FolderIc from "@assets/FolderOpen.svg";
 import Counter from "@assets/Counter.svg";
+import { useAuth } from '../contexts/AuthContext';
 
 export default function ClientDashboard() {
+  const { user } = useAuth();
+  const firstName = user?.name?.split(' ')[0] || 'Client';
+  
   return (
     <div className="min-h-screen w-full bg-gray-50 flex flex-col">
-      {/* Header */}
-      <header className="bg-[#080B1E] text-white py-4 px-6">
-        <div className="max-w-[1317px] mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Kotuma</h1>
-          <div className="flex items-center gap-4">
-            <span className="text-sm md:text-base">Barrister Sarah</span>
-            <div className="w-10 h-10 rounded-full bg-gray-600" />
-          </div>
-        </div>
-      </header>
-
-      {/* Nav */}
-      <nav className="bg-white border-b border-gray-200 py-3">
-        <div className="max-w-[1317px] mx-auto px-6 flex items-center justify-between">
-          {/* Left side - Nav links */}
-          <ul className="flex gap-6">
-            <li className="font-medium text-[#03156B] flex items-center gap-2">
-              <img src={HomeIc} className="w-5 h-5" alt="Home" />
-              Home
-            </li>
-            <li className="flex items-center gap-2 text-gray-600">
-              <img src={Eyes} className="w-5 h-5" alt="Find Lawyers" />
-              Find Lawyers
-            </li>
-            <li className="flex items-center gap-2 text-gray-600">
-              <img src={Dresser} className="w-5 h-5" alt="My Cases" />
-              My Cases
-            </li>
-          </ul>
-
-          {/* Right side - Button */}
-          <button className="py-1.5 px-5 rounded-[30px] border border-gray-400 text-gray-700 font-medium hover:bg-gray-100 transition-colors">
-  New Case
-</button>
-
-        </div>
-      </nav>
-
       {/* Main */}
       <main className="flex-1">
         <div className="max-w-[1317px] mx-auto px-6 py-8 flex flex-col gap-8">
           {/* Welcome */}
           <div>
             <h2 className="text-2xl font-bold mb-1 text-black">
-              Good morning, Josephine!
+              Good morning, {firstName}!
             </h2>
             <p className="text-gray-600">
-              Here&apos;s what&apos;s happening with your legal practice today.
+              Here&apos;s what&apos;s happening with your legal matters today.
             </p>
           </div>
+          
+          {/* User Profile Summary */}
+          {/* {user?.legalNeeds && (
+            <section className="bg-white rounded-[10px] shadow-sm border border-gray-200 p-6">
+              <h3 className="font-bold text-lg mb-4 text-black">Your Legal Needs</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="font-medium text-gray-700">Category:</span>
+                  <span className="ml-2 text-black">{user.legalNeeds.category}</span>
+                </div>
+                <div>
+                  <span className="font-medium text-gray-700">Timeline:</span>
+                  <span className="ml-2 text-black">{user.legalNeeds.timeline}</span>
+                </div>
+                <div>
+                  <span className="font-medium text-gray-700">Court Proceedings:</span>
+                  <span className="ml-2 text-black">{user.legalNeeds.hasProceedings}</span>
+                </div>
+                {user.preferences && (
+                  <div>
+                    <span className="font-medium text-gray-700">Budget Range:</span>
+                    <span className="ml-2 text-black">{user.preferences.budget}</span>
+                  </div>
+                )}
+              </div>
+              {user.legalNeeds.description && (
+                <div className="mt-4">
+                  <span className="font-medium text-gray-700 block mb-2">Description:</span>
+                  <p className="text-black text-sm bg-gray-50 p-3 rounded">{user.legalNeeds.description}</p>
+                </div>
+              )}
+            </section>
+          )} */}
 
           {/* Case progress */}
           <section className="bg-white rounded-[10px] shadow-sm border border-gray-200 p-6">
@@ -67,13 +63,14 @@ export default function ClientDashboard() {
                 <img src={FolderIc} className="w-6 h-6 mt-1" alt="Case" />
                 <div>
                   <h3 className="font-bold text-lg text-black">
-                    Employment Law - Wrongful Termination
+                    Problem Case - {user?.legalNeeds?.category || "Wrongful Termination"} Issue
                   </h3>
                   <div className="text-sm text-gray-500 space-y-1">
                     <p>
-                      Josephine Obong was recently terminated from her position
+                      {user?.legalNeeds?.description}
+                      {/* Josephine Obong was recently terminated from her position
                       as a marketing manager at a tech start up after she
-                      reported
+                      reported */}
                     </p>
                     <p>
                       concerns about discriminatory hiring practices to HR. She
@@ -128,7 +125,7 @@ export default function ClientDashboard() {
                   <div className="text-sm text-gray-700 space-y-1">
                     <p>Meet with your lawyer to discuss your case.</p>
                     <p className="text-sm text-blue-600">
-                      Scheduled for September 5, 2025
+                      Scheduled for October 15, 2025
                     </p>
                   </div>
                 </div>
@@ -191,13 +188,13 @@ export default function ClientDashboard() {
                 <div className="flex items-start gap-3">
                   <img src={CalenderIc} className="w-5 h-5 mt-0.5" alt="Cal" />
                   <div>
-                     <p className="text-black">
-                      Initial Consultation with {" "}
+                    <p className="text-black">
+                      Initial Consultation with{" "}
                       <a
                         href="#"
                         className="font-medium text-blue-500 underline underline-offset-2"
                       >
-                         Bar. Micheal Atansuyi
+                        Bar. Micheal Atansuyi
                       </a>
                     </p>
                     <p className="text-gray-500 text-sm">
@@ -210,12 +207,12 @@ export default function ClientDashboard() {
                   <img src={CalenderIc} className="w-5 h-5 mt-0.5" alt="Cal" />
                   <div>
                     <p className="text-black">
-                      Initial Consultation with {" "}
+                      Initial Consultation with{" "}
                       <a
                         href="#"
                         className="font-medium text-blue-500 underline underline-offset-2"
                       >
-                         Bar. James Coleman
+                        Bar. James Coleman
                       </a>
                     </p>
                     <p className="text-gray-500 text-sm">
@@ -228,12 +225,12 @@ export default function ClientDashboard() {
                   <img src={CalenderIc} className="w-5 h-5 mt-0.5" alt="Cal" />
                   <div>
                     <p className="text-black">
-                      Initial Consultation with {" "}
+                      Initial Consultation with{" "}
                       <a
                         href="#"
                         className="font-medium text-blue-500 underline underline-offset-2"
                       >
-                         Bar. Hayden Babatunde
+                        Bar. Hayden Babatunde
                       </a>
                     </p>
                     <p className="text-gray-500 text-sm">

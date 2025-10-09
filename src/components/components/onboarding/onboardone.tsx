@@ -17,7 +17,6 @@ const OnboardOne = () => {
     const isReturningUser = val === "returning-client" || val === "returning-lawyer";
     setIsReturning(isReturningUser);
 
-
     if (val === "lawyer" || val === "returning-lawyer") {
         setPathway("lawyer");
     } else {
@@ -27,10 +26,12 @@ const OnboardOne = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (onboard === "lawyer") navigate("/onboarding/onboardlawyers/basic-info");
-    else if (onboard === "returning-lawyer") navigate("/onboarding/onboardlawyers/lawyers-login");
-    else if (onboard === "legal-help") navigate("/onboarding/onboardclients/basic-info");
-    else if (onboard === "returning-client") navigate("/onboarding/onboardclients/clients-login");
+    
+    // Navigate to appropriate flow based on selection
+    if (onboard === "lawyer") navigate("/auth/lawyer/basic-info");
+    else if (onboard === "returning-lawyer") navigate("/auth/lawyer/login");
+    else if (onboard === "legal-help") navigate("/auth/client/basic-info");
+    else if (onboard === "returning-client") navigate("/auth/client/login");
   };
 
   const box = (active: boolean) =>

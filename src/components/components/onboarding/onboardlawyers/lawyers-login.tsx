@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../../../../contexts/AuthContext";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
-import { Eye, EyeOff } from "lucide-react"; // 👈 icons
+import { Eye, EyeOff } from "lucide-react";
 
 const LawyersLogin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login, isLoading } = useAuth();
 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
@@ -20,12 +23,23 @@ const LawyersLogin = () => {
       setError("Email is required.");
       return;
     }
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
+    if (!password) {
+      setError("Password is required.");
       return;
     }
 
-    navigate("/dashboard");
+    try {
+      const result = await login(email, password, "lawyer");
+      
+      if (result.success) {
+        const from = location.state?.from?.pathname || '/app/dashboard';
+        navigate(from, { replace: true });
+      } else {
+        setError(result.message || 'Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      setError('An unexpected error occurred. Please try again.');
+    }
   };
 
   return (
@@ -90,9 +104,17 @@ const LawyersLogin = () => {
 
         <Button
           type="submit"
-          className="w-full h-12 text-[15px] bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-white"
+          disabled={isLoading}
+          className="w-full h-12 text-[15px] bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-white disabled:opacity-50"
         >
-          Sign In
+          {isLoading ? (
+            <>
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+              Signing In...
+            </>
+          ) : (
+            'Sign In'
+          )}
         </Button>
       </form>
     </div>

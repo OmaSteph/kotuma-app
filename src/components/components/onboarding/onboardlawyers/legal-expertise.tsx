@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
+import { useOnboarding } from "../onboarding-context";
 
 const PRACTICE_AREAS = [
   "Corporate Law",
@@ -26,6 +27,7 @@ type Practice = { area: string; years: string };
 
 const LawyerLegalExpertise = () => {
   const navigate = useNavigate();
+  const { updateFormData } = useOnboarding();
 
   const [language, setLanguage] = useState("");
   const [serviceMethod, setServiceMethod] =
@@ -49,8 +51,21 @@ const LawyerLegalExpertise = () => {
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/onboarding/onboardlawyers/create-account");
+    
+    // Save legal expertise data to context
+    updateFormData({
+      legalExpertise: {
+        language: language,
+        serviceMethod: serviceMethod,
+        practiceAreas: practices,
+        bio: bio
+      }
+    });
+    
+    navigate("/auth/lawyer/create-account");
   };
+  
+  const isFormValid = language && serviceMethod && practices.length > 0;
 
   return (
     <div className="w-full max-w-lg px-4 py-4 sm:px-6 md:px-0">
@@ -182,7 +197,8 @@ const LawyerLegalExpertise = () => {
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full h-11 sm:h-12 bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-[15px]"
+          disabled={!isFormValid}
+          className="w-full h-11 sm:h-12 bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-[15px] disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Proceed
         </Button>

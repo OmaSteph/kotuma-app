@@ -2,11 +2,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
+import { useOnboarding } from "../onboarding-context";
 
 const LawyerBasicInfo = () => {
   const navigate = useNavigate();
+  const { updateFormData } = useOnboarding();
 
   const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    employmentStatus: "",
+    location: "",
+  });
+
+  const [errors, setErrors] = useState({
     fullName: "",
     email: "",
     phone: "",
@@ -21,6 +31,14 @@ const LawyerBasicInfo = () => {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: ""
+      }));
+    }
   };
 
   const onFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,10 +46,67 @@ const LawyerBasicInfo = () => {
     setAvatar(file);
   };
 
+  const validateForm = () => {
+    const newErrors = {
+      fullName: "",
+      email: "",
+      phone: "",
+      employmentStatus: "",
+      location: "",
+    };
+
+    // Full Name validation
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full name is required";
+    } else if (formData.fullName.trim().length < 2) {
+      newErrors.fullName = "Full name must be at least 2 characters";
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    // Phone validation
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (!/^[+]?[\d\s\-\(\)]{10,}$/.test(formData.phone.replace(/\s/g, ''))) {
+      newErrors.phone = "Please enter a valid phone number";
+    }
+
+    // Employment Status validation
+    if (!formData.employmentStatus) {
+      newErrors.employmentStatus = "Employment status is required";
+    }
+
+    // Location validation
+    if (!formData.location.trim()) {
+      newErrors.location = "Location is required";
+    }
+
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(error => error !== "");
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/onboarding/onboardlawyers/legal-expertise");
+    if (validateForm()) {
+      // Save form data to context
+      updateFormData({
+        fullName: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        location: formData.location,
+        employmentStatus: formData.employmentStatus,
+        avatar: avatar
+      });
+      navigate("/auth/lawyer/legal-expertise");
+    }
   };
+
+  const isFormValid = Object.values(formData).every(value => value.trim() !== "");
 
   return (
     <div
@@ -46,7 +121,7 @@ const LawyerBasicInfo = () => {
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-        <fieldset className="rounded-2xl border border-gray-200 p-3">
+        <fieldset className={`rounded-2xl border p-3 ${errors.fullName ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}>
           <label
             htmlFor="fullName"
             className="block text-xs sm:text-sm font-medium text-[#667085] px-1 mb-1">
@@ -59,8 +134,9 @@ const LawyerBasicInfo = () => {
             value={formData.fullName}
             onChange={handleChange}
             placeholder="Enter Full Name"
-            className="h-11 sm:h-12 border-0 focus-visible:ring-0 px-3"
+            className={`h-11 sm:h-12 border-0 focus-visible:ring-0 px-3 ${errors.fullName ? 'bg-red-50' : ''}`}
           />
+          {errors.fullName && <p className="text-red-600 text-xs mt-1 px-1">{errors.fullName}</p>}
         </fieldset>
 
         {/* Email Address Fieldset */}
@@ -216,11 +292,13 @@ const LawyerBasicInfo = () => {
         {/* Submit Button */}
         <Button
           type="submit"
+          disabled={!isFormValid}
           className="
             w-full h-11 sm:h-12
             bg-[#0A1D5B] hover:bg-[#0A1D5B]/90
             text-white font-medium
             text-[15px]
+            disabled:opacity-50 disabled:cursor-not-allowed
           "
         >
           Proceed

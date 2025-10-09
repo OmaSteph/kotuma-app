@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { Textarea } from "@components/components/ui/textarea";
+import { useOnboarding } from "../onboarding-context";
 
 const SituationCategories = [
   "Corporate Law",
@@ -25,6 +26,7 @@ const TIME_SLOTS = [
 
 const ClientsLegalSituation = () => {
   const navigate = useNavigate();
+  const { updateFormData } = useOnboarding();
 
   const [period, setPeriod] = useState("");
   const [category, setCategory] = useState("");
@@ -33,8 +35,25 @@ const ClientsLegalSituation = () => {
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/onboarding/onboardclients/clients-preference");
+    
+    // Basic validation - check if required fields are filled
+    if (!category || !period || !hasProceedings) {
+      alert("Please fill in all required fields");
+      return;
+    }
+    
+    // Save legal situation data to context
+    updateFormData({
+      legalCategory: category,
+      legalDescription: description,
+      timeline: period,
+      hasProceedings: hasProceedings
+    });
+    
+    navigate("/auth/client/preferences");
   };
+  
+  const isFormValid = category && period && hasProceedings;
 
   return (
     <div className="w-full max-w-lg px-4 py-4 sm:px-6 md:px-0">
@@ -141,7 +160,8 @@ const ClientsLegalSituation = () => {
         {/* Proceed Button */}
         <Button
           type="submit"
-          className="w-full h-11 sm:h-12 bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-[15px] text-white"
+          disabled={!isFormValid}
+          className="w-full h-11 sm:h-12 bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-[15px] text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Proceed
         </Button>

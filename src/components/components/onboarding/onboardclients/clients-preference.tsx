@@ -1,13 +1,34 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../ui/button";
+import { useOnboarding } from "../onboarding-context";
 
 const ClientsPreference = () => {
   const navigate = useNavigate();
+  const { updateFormData } = useOnboarding();
+
+  const [preferences, setPreferences] = useState({
+    communication: "",
+    budget: "",
+    language: ""
+  });
+
+  const handleSelectChange = (field: keyof typeof preferences, value: string) => {
+    setPreferences(prev => ({ ...prev, [field]: value }));
+  };
 
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate("/onboarding/onboardclients/create-accounts");
+    
+    // Save preferences data to context
+    updateFormData({
+      preferences: preferences
+    });
+    
+    navigate("/auth/client/create-account");
   };
+
+  const isFormValid = preferences.communication && preferences.budget && preferences.language;
 
   return (
     <div className="w-full max-w-lg px-4 py-4 sm:px-6 md:px-0">
@@ -27,6 +48,8 @@ const ClientsPreference = () => {
             How do you prefer to communicate?
           </label>
           <select
+            value={preferences.communication}
+            onChange={(e) => handleSelectChange('communication', e.target.value)}
             className="w-full h-11 sm:h-12 rounded-xl border-0 bg-transparent px-3 text-sm focus:outline-none focus:ring-0"
           >
             <option value="" disabled>
@@ -44,6 +67,8 @@ const ClientsPreference = () => {
             Budget Range
           </label>
           <select
+            value={preferences.budget}
+            onChange={(e) => handleSelectChange('budget', e.target.value)}
             className="w-full h-11 sm:h-12 rounded-xl border-0 bg-transparent px-3 text-sm focus:outline-none focus:ring-0"
           >
             <option value="" disabled>
@@ -62,6 +87,8 @@ const ClientsPreference = () => {
             Language Preference
           </label>
           <select
+            value={preferences.language}
+            onChange={(e) => handleSelectChange('language', e.target.value)}
             className="w-full h-11 sm:h-12 rounded-xl border-0 bg-transparent px-3 text-sm focus:outline-none focus:ring-0"
           >
             <option value="" disabled>
@@ -78,7 +105,8 @@ const ClientsPreference = () => {
         {/* Proceed Button */}
         <Button
           type="submit"
-          className="w-full h-11 sm:h-12 bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-[15px] text-white"
+          disabled={!isFormValid}
+          className="w-full h-11 sm:h-12 bg-[#0A1D5B] hover:bg-[#0A1D5B]/90 text-[15px] text-white disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Proceed
         </Button>
