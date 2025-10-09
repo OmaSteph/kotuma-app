@@ -1,52 +1,70 @@
-import HomeIc from "@assets/CirclesFour (2).svg";
-import People from "@assets/ic_round-people.svg";
 import CalenderIc from "@assets/Calendar.svg";
 import VectorIc from "@assets/Vector.svg";
 import FolderIc from "@assets/FolderOpen.svg";
 import Counter from "@assets/Counter.svg";
+import { useAuth } from '../contexts/AuthContext';
 
 export default function LawyerDashboard() {
+  const { user } = useAuth();
+  const firstName = user?.name?.split(' ')[0] || 'Barrister';
+  
   return (
     <div className="min-h-screen w-full bg-gray-50 flex flex-col">
-      {/* Header */}
-      <header className="bg-[#080B1E] text-white py-4 px-6">
-        <div className="max-w-[1317px] mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Kotuma</h1>
-          <div className="flex items-center gap-4">
-            <span className="text-sm md:text-base">Barrister Sarah</span>
-            <div className="w-10 h-10 rounded-full bg-gray-600" />
-          </div>
-        </div>
-      </header>
-
-      {/* Nav */}
-      <nav className="bg-white border-b border-gray-200 py-3">
-        <div className="max-w-[1317px] mx-auto px-6">
-          <ul className="flex gap-6">
-            <li className="font-medium text-[#03156B] flex items-center gap-2">
-              <img src={HomeIc} className="w-5 h-5" alt="Home" />
-              Home
-            </li>
-            <li className="flex items-center gap-2 text-gray-600">
-              <img src={People} className="w-5 h-5" alt="My Clients" />
-              My Clients
-            </li>
-          </ul>
-        </div>
-      </nav>
-
       {/* Main */}
       <main className="flex-1">
         <div className="max-w-[1317px] mx-auto px-6 py-8 flex flex-col gap-8">
           {/* Welcome */}
           <div>
             <h2 className="text-2xl font-bold mb-1 text-black">
-              Good morning, Barrister Sarah!
+              Good morning, {firstName}!
             </h2>
             <p className="text-gray-600">
               Here&apos;s what&apos;s happening with your legal practice today.
             </p>
           </div>
+          
+          {/* Lawyer Profile Summary */}
+          {user?.legalExpertise && (
+            <section className="bg-white rounded-[10px] shadow-sm border border-gray-200 p-6">
+              <h3 className="font-bold text-lg mb-4 text-black">Your Legal Expertise</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                <div>
+                  <span className="font-medium text-gray-700">Service Method:</span>
+                  <span className="ml-2 text-black">{user.legalExpertise.serviceMethod}</span>
+                </div>
+                <div>
+                  <span className="font-medium text-gray-700">Languages:</span>
+                  <span className="ml-2 text-black">{user.legalExpertise.language}</span>
+                </div>
+                {user.employmentStatus && (
+                  <div>
+                    <span className="font-medium text-gray-700">Employment Status:</span>
+                    <span className="ml-2 text-black capitalize">{user.employmentStatus.replace('-', ' ')}</span>
+                  </div>
+                )}
+              </div>
+              
+              {user.legalExpertise.practiceAreas.length > 0 && (
+                <div className="mb-4">
+                  <span className="font-medium text-gray-700 block mb-2">Practice Areas:</span>
+                  <div className="flex flex-wrap gap-2">
+                    {user.legalExpertise.practiceAreas.map((area, index) => (
+                      <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                        {area.area} • {area.years}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {user.legalExpertise.bio && (
+                <div>
+                  <span className="font-medium text-gray-700 block mb-2">Professional Bio:</span>
+                  <p className="text-black text-sm bg-gray-50 p-3 rounded">{user.legalExpertise.bio}</p>
+                </div>
+              )}
+            </section>
+          )}
 
           {/* Case progress */}
           <section className="bg-white rounded-[10px] shadow-sm border border-gray-200 p-6">

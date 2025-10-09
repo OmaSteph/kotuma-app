@@ -14,7 +14,7 @@ const InitPathwayFromRoute = () => {
   const { setPathway } = useOnboarding();
 
   useEffect(() => {
-    if (pathname.startsWith("/onboarding/onboardlawyers")) setPathway("lawyer");
+    if (pathname.startsWith("/auth/lawyer")) setPathway("lawyer");
     else setPathway("client");
   }, [pathname, setPathway]);
 
@@ -30,8 +30,8 @@ const OnboardingLayoutContent = () => {
   const isUserRolePage = pathSegments.length <= 2;
 
   const isLoginPageUrl =
-    location.pathname.endsWith("/clientslogin") ||
-    location.pathname.endsWith("/lawyers-login");
+    location.pathname.endsWith("/login") ||
+    location.pathname.endsWith("/signin");
 
   // Determines if the sidebar margin should be applied
   const shouldOffset = !(isReturning || isLoginPageUrl);

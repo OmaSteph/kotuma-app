@@ -12,12 +12,14 @@ const OnboardingHeader = ({ isUserRolePage }: { isUserRolePage: boolean }) => {
       <span className="text-gray-500 hidden sm:inline">
         Already have an account?
       </span>
-      <Button
-        variant="outline"
-        className="h-9 sm:h-10 px-4 sm:px-6 rounded-xl border-[#E5E7EB] text-[#0A1D5B] font-semibold hover:bg-gray-50"
-      >
-        Sign In
-      </Button>
+      <Link to="/auth/signin">
+        <Button
+          variant="outline"
+          className="h-9 sm:h-10 px-4 sm:px-6 rounded-xl border-[#E5E7EB] text-[#0A1D5B] font-semibold hover:bg-gray-50"
+        >
+          Sign In
+        </Button>
+      </Link>
     </div>
   );
 

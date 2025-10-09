@@ -44,12 +44,12 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden lg:flex items-center gap-4">
-          <Link to="/onboarding/signin">
+          <Link to="/auth/signin">
             <Button variant="outline" className="border-kotumablue">
               Sign in
             </Button>
           </Link>
-          <Link to="/onboarding/signUp">
+          <Link to="/auth/signup">
             <Button className="bg-kotumablue">Sign up</Button>
           </Link>
         </div>
@@ -63,12 +63,12 @@ const Navbar = () => {
               </ul>
 
               <div className="flex flex-col items-center gap-4 p-4 border-t border-kotumablue">
-                <Link to="/onboarding/signin">
+                <Link to="/auth/signin">
                   <Button variant="outline" className="border-kotumablue">
                     Sign in
                   </Button>
                 </Link>
-                <Link to="/onboarding/signup">
+                <Link to="/auth/signup">
                   <Button className="bg-kotumablue">Sign up</Button>
                 </Link>
               </div>
