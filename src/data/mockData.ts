@@ -75,7 +75,7 @@ export const MOCK_LAWYERS: Lawyer[] = [
   },
   {
     id: '2',
-    name: 'Barrister Sarah Adeyemi',
+    name: 'Barrister Hayden Jacob',
     title: 'Managing Partner',
     specialization: ['Criminal Law', 'Family Law', 'Immigration Law'],
     rating: 4.9,
@@ -120,7 +120,7 @@ export const MOCK_LAWYERS: Lawyer[] = [
   },
   {
     id: '5',
-    name: 'Barrister Amina Hassan',
+    name: 'Barrister Chinedu Okoro',
     title: 'Partner',
     specialization: ['Intellectual Property', 'Technology Law', 'Media Law'],
     rating: 4.8,
@@ -135,7 +135,7 @@ export const MOCK_LAWYERS: Lawyer[] = [
   },
   {
     id: '6',
-    name: 'Barrister Hayden Babatunde',
+    name: 'Barrister Sarah Adeyemi',
     title: 'Senior Associate',
     specialization: ['Tax Law', 'Banking Law', 'Securities Law'],
     rating: 4.6,
@@ -165,7 +165,7 @@ export const MOCK_LAWYERS: Lawyer[] = [
   },
   {
     id: '8',
-    name: 'Aisha Bello',
+    name: 'Stephanie Abraham',
     title: 'Tax Law Partner',
     specialization: ['Tax Law', 'Corporate Tax', 'International Tax'],
     rating: 4.8,

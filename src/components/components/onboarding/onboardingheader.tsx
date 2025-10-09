@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
 const SIDEBAR_WIDTH_LG = '230px'; 
-const SIDEBAR_COLOR = 'bg-[#fff6f4]';
 
 const OnboardingHeader = ({ isUserRolePage }: { isUserRolePage: boolean }) => {
   const SignInGroup = (
@@ -34,9 +33,7 @@ const OnboardingHeader = ({ isUserRolePage }: { isUserRolePage: boolean }) => {
       
       <div 
         className={`
-          hidden lg:flex items-center justify-center 
-          ${SIDEBAR_COLOR} 
-          
+          hidden lg:flex items-center justify-center           
           lg:w-[${SIDEBAR_WIDTH_LG}]
         `}
       >
